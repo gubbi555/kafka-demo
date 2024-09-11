@@ -1,0 +1,24 @@
+image: maven:3.9.5-eclipse-temurin-17
+
+stages:
+  - build
+  - docker-build
+
+# Build Maven project with correct JDK version
+build:
+  stage: build
+  script:
+    - mvn clean package
+
+# Build Docker image and push it to GitLab Registry
+docker-build:
+  image: docker:24.0
+  stage: docker-build
+  services:
+    - docker:dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+  only:
+    - main
