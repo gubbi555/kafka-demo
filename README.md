@@ -10,7 +10,7 @@ Build Instructions
 Docker Build and Push to GitLab Registry
 Kubernetes Deployment on Docker Desktop
 Accessing the Application
-CI/CD Pipeline with GitLab
+CI Pipeline with GitLab
 Kubernetes Security Considerations
 Troubleshooting
 
@@ -86,4 +86,4 @@ Issue: The error indicates that the Maven compiler plugin is not configured corr
 Solution: Ensure the maven-compiler-plugin in  pom.xml file is correctly configured for Java 17.
 Kubernetes Errors
 Issue: imagePullbackoff
-solution: need ensure that we have necessary permission to pull the image and attach imagePullpolicy and use secretes.yml file
+solution: need to ensure that we have necessary permission to pull the image and attach imagePullpolicy and use secretes.yml file
